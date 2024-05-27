@@ -1,0 +1,25 @@
+-- planejamento entidade x relacionamento--
+
+ENTIDADES
+-usuario
+um usuario pode criar varias tarefas
+um usuario pode ter varias categorias
+
+-tarefas
+uma tarefa sempre pertence a um unico usuario
+uma tarefa sempre pertence a uma categoria
+
+-categorias
+uma categoria pode ter varias tarefas
+uma categoria sempre vai pertencer a um usuario
+
+-- migrations --
+
+-usuario
+padrao laravel
+
+-tarefas
+id, titulo, data, descricao, categoria_id, usuario_id
+
+-categoria
+id, nome, cor, usuario_id
