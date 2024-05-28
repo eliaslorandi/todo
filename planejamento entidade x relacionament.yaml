@@ -15,11 +15,11 @@ uma categoria sempre vai pertencer a um usuario
 
 -- migrations --
 
--usuario
+-usuario: (users)
 padrao laravel
 
--tarefas
+-tarefas: (tasks)
 id, titulo, data, descricao, categoria_id, usuario_id
 
--categoria
+-categoria: (categories)
 id, nome, cor, usuario_id
