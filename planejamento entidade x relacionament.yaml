@@ -19,7 +19,7 @@ uma categoria sempre vai pertencer a um usuario
 padrao laravel
 
 -tarefas: (tasks)
-id, titulo, data, descricao, categoria_id, usuario_id
+id, title, due_date, description, category_id, user_id
 
 -categoria: (categories)
-id, nome, cor, usuario_id
+id, title, color, user_id
