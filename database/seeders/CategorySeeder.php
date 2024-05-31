@@ -13,11 +13,13 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
-            'title' => 'Category Example',
-            'color' => '#FFFFFF',
-            'user_id' => 1
-        ]);
+        //comentado para nao rodar
+
+        // Category::create([
+        //     'title' => 'Category Example',
+        //     'color' => '#FFFFFF',
+        //     'user_id' => 1
+        // ]);
 
     }
 }

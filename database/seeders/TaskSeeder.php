@@ -13,12 +13,14 @@ class TaskSeeder extends Seeder
      */
     public function run(): void
     {
-        Task::create([
-            'title' => 'Task Example',
-            'description' => 'blablablabla',
-            'due_date' => '2024-12-12 00:00:00',
-            'user_id' => 1,
-            'category_id' => 1
-        ]);
+        //comentado para nao rodar
+
+        // Task::create([
+        //     'title' => 'Task Example',
+        //     'description' => 'blablablabla',
+        //     'due_date' => '2024-12-12 00:00:00',
+        //     'user_id' => 1,
+        //     'category_id' => 1
+        // ]);
     }
 }
