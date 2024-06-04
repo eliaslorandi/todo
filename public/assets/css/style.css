@@ -65,7 +65,7 @@ section.graph {
     padding: 5px;
 }
 
-.graph_header{
+.graph_header {
     display: flex;
     justify-content: space-between;
 }
@@ -75,36 +75,72 @@ h2 {
     display: inline-block;
 }
 
-hr.line_header{
+hr.line_header {
     width: 130px;
-    display: inline-block;
 }
 
-.graph_header-subtitle{
+.graph_header-subtitle {
     margin-top: 10px;
 }
 
-.graph_placeholder{
+.graph_placeholder {
     background-color: #ccc;
     width: 300px;
     height: 300px;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 60px;
 }
 
-.graph_header-remaining_tasks{
+.graph_header-remaining_tasks {
     text-align: center;
     margin-top: 10px;
 }
 
-.list{
+.list {
     padding: 5px 15px;
+    background-color: blue;
+    flex: 1;
 }
 
-.list_header{
+.list_header {
     display: flex;
 }
 
-.list_header-select{
+.list_header-select {}
 
+.task_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: red;
+    margin-top: 20px;
+}
+
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    background-color: green;
+    flex: 1;
+}
+
+.priority, .actions {
+    flex: 1;
+}
+
+.actions{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task_title{
+    padding-left: 10px;
+    font-weight: bold;
 }

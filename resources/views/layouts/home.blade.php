@@ -47,6 +47,22 @@
                             </option>
                         </select>
                     </div>
+                    <div class="task_list">
+                        <div class="task">
+                            <div class="title">
+                                <input type="checkbox">
+                                <div class="task_title"> Titulo da Tarefa </div>
+                            </div>
+                            <div class="priority">
+                                <div class="sphere">
+                                    <div> Titulo da Tarefa </div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                editar - excluir
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </main>
         </div>
