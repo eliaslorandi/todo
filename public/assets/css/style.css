@@ -2,7 +2,9 @@
     --background-white: #FCF6D5;
     --background-light: #E9E2BA;
     --text-dark: #A92916;
-    --color-primary: #F87358;
+    --color-primary-1: #f39886;
+    --color-primary-2: #f37056;
+    --color-primary-3: #f54b29;
 }
 
 * {
@@ -27,7 +29,7 @@ body {
 
 .sidebar {
     width: 100px;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-2);
 }
 
 nav {
@@ -43,31 +45,37 @@ nav {
 .btn {
     padding: 15px 20px;
     border-radius: 10px;
-}
-
-a.btn {
-    text-decoration: none;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-2);
     color: var(--background-white);
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+    background-color: var(--color-primary-3);
 }
 
 main {
     display: flex;
-    padding: 20px;
+    padding: 0px;
 }
 
 section.graph {
-    width: 33%;
+    width: 30%;
     height: 100%;
-    padding: 5px;
+    padding: 20px;
+}
+
+section.graph_placeholder{
+    display: flex;
+    flex: 1;
 }
 
 .graph_header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 h2 {
@@ -75,8 +83,21 @@ h2 {
     display: inline-block;
 }
 
-hr.line_header {
-    width: 130px;
+.graph_header-line {
+    flex: 1;
+    background-color: var(--color-primary-1);
+    height: 1px;
+}
+
+.graph_header-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+.graph_header-date img{
+    width: 15px;
 }
 
 .graph_header-subtitle {
@@ -87,18 +108,23 @@ hr.line_header {
     background-color: #ccc;
     width: 300px;
     height: 300px;
-    margin-top: 20px;
-    margin-left: 60px;
+    margin: 30px auto;
 }
 
-.graph_header-remaining_tasks {
-    text-align: center;
-    margin-top: 10px;
+.graph_header-tasks_left_footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.graph_header-tasks_left_footer img{
+    width: 22px;
+    margin-right: 5px;
 }
 
 .list {
-    padding: 5px 15px;
-    background-color: blue;
+    padding: 20px;
     flex: 1;
 }
 
@@ -106,13 +132,15 @@ hr.line_header {
     display: flex;
 }
 
-.list_header-select {}
+.list_header-select {
+    background-color: transparent;
+    border: 0;
+}
 
 .task_list {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: red;
     margin-top: 20px;
 }
 
@@ -121,26 +149,60 @@ hr.line_header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5px;
+    padding: 30px 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-primary-1);
+    transition: all .3s ease-in-out;
+}
+
+.task:hover{
+    background-color: var(--background-light);
+    transform: scale(1.01);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .title {
     display: flex;
     align-items: center;
-    background-color: green;
     flex: 1;
 }
 
-.priority, .actions {
-    flex: 1;
-}
-
-.actions{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.task_title{
+.task_title {
     padding-left: 10px;
     font-weight: bold;
+}   
+
+.priority,
+.actions {
+    display: flex;
+    align-items: center;
+    flex: 1;
 }
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+} 
+
+.actions a{
+    margin-left: 10px;
+    transition: all .3s ease-in-out;
+}
+
+.actions a:hover{
+    transform: scale(1.35);
+}
+
+.actions img{
+    width: 22px;
+}
+
+.sphere {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: rgb(128, 68, 0);
+}
+
