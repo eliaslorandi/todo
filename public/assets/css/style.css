@@ -80,7 +80,7 @@ section.graph_placeholder{
 
 h2 {
     flex: 1;
-    display: inline-block;
+    display: inline-block; 
 }
 
 .graph_header-line {
