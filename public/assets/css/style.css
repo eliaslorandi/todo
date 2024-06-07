@@ -32,6 +32,11 @@ body {
     background-color: var(--color-primary-2);
 }
 
+.sidebar img{
+    max-width: 60%;
+    margin: 20px;
+}
+
 nav {
     height: 100px;
     background-color: var(--background-light);
@@ -45,8 +50,6 @@ nav {
 .btn {
     padding: 15px 20px;
     border-radius: 10px;
-    background-color: var(--color-primary-2);
-    color: var(--background-white);
     text-decoration: none;
     transition: all .3s ease-in-out;
 }
@@ -54,6 +57,15 @@ nav {
 .btn:hover{
     transform: scale(1.05);
     background-color: var(--color-primary-3);
+}
+
+a.btn{
+    margin-left: 5px;
+}
+
+.btn-primary{
+    background-color: var(--color-primary-2);
+    color: var(--background-white);
 }
 
 main {
