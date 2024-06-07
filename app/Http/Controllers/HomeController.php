@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class HomeController extends Controller
 {
     public function index(Request $request){
-        return view('home');
+        $tasks = Task::all()->take(3);
+
+        return view('home', ['tasks' => $tasks]);
     }
 }
