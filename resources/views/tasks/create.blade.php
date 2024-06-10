@@ -10,7 +10,7 @@
         <h1>Criar Tarefa</h1>
         <form>
             <x-form.text_input name="title" label="Titulo da tarefa:" placeholder="Digite o título" />
-            <x-form.text_input name="due_date" label="Data de realização:" type="date" placeholder="Digite o título" />
+            <x-form.text_input name="due_date" label="Data de realização:" type="date" />
             <x-form.select_input name="category" label="Categoria:">
             </x-form.select_input>
             <x-form.text_area_input name="description" label="Descrição:" placeholder="Digite a descrição" />
