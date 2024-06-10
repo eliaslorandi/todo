@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <img src="assets/images/project-logo.png">
+            <img src="/assets/images/project-logo.png">
         </div>
         <div class="content">
             <nav>
