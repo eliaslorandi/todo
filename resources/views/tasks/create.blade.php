@@ -11,7 +11,10 @@
         <form>
             <x-form.text_input name="title" label="Titulo da tarefa:" placeholder="Digite o título" />
             <x-form.text_input name="due_date" label="Data de realização:" type="date" />
-            <x-form.select_input name="category" label="Categoria:">
+            <x-form.select_input name="category_id" label="Categoria:">
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->title}}</option>
+                @endforeach
             </x-form.select_input>
             <x-form.text_area_input name="description" label="Descrição:" placeholder="Digite a descrição" />
             <x-form.form_button submitTxt="Criar tarefa" resetTxt="Limpar"></x-form.form_button>
