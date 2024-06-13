@@ -44,6 +44,7 @@ class TaskController extends Controller
 
     public function edit_action(Request $request){
         $request_data = $request->only(['title', 'due_date', 'category_id', 'description']);
+        $request_data['is_done'] = $request->is_done ? true : false;
         $task = Task::find($request->id);
         if (!$task) {
             return 'Task não existente';
