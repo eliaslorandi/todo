@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function index(Request $request){
+       dd(Auth::user());
         return view('login');
     }
 
@@ -17,6 +19,10 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
+
+        if (Auth::attempt($validator)){
+            return redirect()->route('home');
+        };
 
     }
 
