@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function index(Request $request){
-       dd(Auth::user());
+        if(Auth::check()){ //irá conferir se a seção é valida, mais rapido que o ::User
+            return redirect()->route('home');
+        }
         return view('login');
     }
 
@@ -27,6 +29,11 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        $isLoggedIn = Auth::Check();
+        if($isLoggedIn){
+            return redirect()->route('home');
+        }
+
         return view('register');
     }
 
@@ -49,10 +56,17 @@ class AuthController extends Controller
 
         $data = $request->only('name', 'email', 'password');
 
-        //verificar se o laravel já encripta automaticamente (creio que sim)
-        //$data['password'] = Hash::make($data['password']);
+        /**
+         * verificar se o laravel já encripta automaticamente (creio que sim)
+         * $data['password'] = Hash::make($data['password']);
+         */
 
         User::create($data);
+        return redirect(route('login'));
+    }
+
+    public function logout(){
+        Auth::logout();
         return redirect(route('login'));
     }
 
