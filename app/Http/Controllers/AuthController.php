@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function index(Request $request){
         return view('login');
+    }
+
+    public function login_action(Request $request){
+        $validator = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
     }
 
     public function register(Request $request){
@@ -34,8 +43,10 @@ class AuthController extends Controller
 
         $data = $request->only('name', 'email', 'password');
 
-        User::create($data);
+        //verificar se o laravel já encripta automaticamente (creio que sim)
+        //$data['password'] = Hash::make($data['password']);
 
+        User::create($data);
         return redirect(route('login'));
     }
 
