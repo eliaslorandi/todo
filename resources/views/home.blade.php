@@ -1,10 +1,10 @@
 <x-layout>
 
     <x-slot:btn>
-        <a href="{{route('task.create')}}" class="btn btn-primary">
+        <a href="{{ route('task.create') }}" class="btn btn-primary">
             Criar Tarefa
         </a>
-        <a href="{{route('logout')}}" class="btn btn-primary">
+        <a href="{{ route('logout') }}" class="btn btn-primary">
             Sair
         </a>
     </x-slot:btn>
@@ -48,9 +48,47 @@
         <div class="task_list">
 
             @foreach ($tasks as $task)
-            <x-task :data=$task/>
+                <x-task :data=$task />
             @endforeach
         </div>
 
     </section>
+
+    <script>
+        async function taskUpdate(element) {
+            let status = element.checked;
+            let taskId = element.dataset.id;
+            let url = '{{ route('task.update') }}';
+
+            try {
+                let rawResult = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',  // Ajuste para 'Content-Type'
+                        'Accept': 'application/json',        // Ajuste para 'Accept'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token
+                    },
+                    body: JSON.stringify({
+                        status,
+                        taskId
+                    })
+                });
+
+                let result = await rawResult.json();
+
+                if (result.success) {
+                    alert('Task atualizada');
+                } else {
+                    element.checked = !status;
+                    alert('Erro ao atualizar a tarefa');
+                }
+            } catch (error) {
+                element.checked = !status;
+                alert('Erro ao atualizar a tarefa');
+                console.error('Erro:', error);
+            }
+        }
+    </script>
+
+
 </x-layout>
