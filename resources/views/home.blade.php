@@ -12,7 +12,6 @@
     <section class="graph">
 
         <div class="graph_header">
-            {{-- <h2> {{$AuthUser->name}} </h2> --}}
             <h2> Progresso </h2>
             <div class="graph_header-line"></div>
             <div class="graph_header-date">
