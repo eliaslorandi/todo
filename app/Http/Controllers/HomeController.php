@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,12 @@ class HomeController extends Controller
         } else {
             $filteredDate = date('Y-m-d');
         }
+
+        $carbonDate = Carbon::createFromDate($filteredDate);//Lib carbon para formatar data
+
+        $data['dateAsString'] = $carbonDate ->translatedFormat('d M');
+        $data['datePrevButton'] = $carbonDate->addDay(-1)->translatedFormat('Y-m-d');
+        $data['dateNextButton'] = $carbonDate->addDay(2)->translatedFormat('Y-m-d');
 
         $data['tasks'] = Task::whereDate('due_date', $filteredDate)->get();
         $data['AuthUser'] = Auth::user();

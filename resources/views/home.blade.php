@@ -13,11 +13,15 @@
 
         <div class="graph_header">
             <h2> Progresso </h2>
-            <div class="graph_header-line"></div>
+            {{-- <div class="graph_header-line"></div> --}}
             <div class="graph_header-date">
-                <img src="/assets/images/prev-icon.png" alt="">
-                06 de Jun
-                <img src="/assets/images/next-icon.png" alt="">
+                <a href="{{route('home', ['date' => $datePrevButton])}}">
+                    <img src="/assets/images/prev-icon.png" alt="">
+                </a>
+                {{ $dateAsString }}
+                <a href="{{route('home', ['date' => $dateNextButton])}}">
+                    <img src="/assets/images/next-icon.png" alt="">
+                </a>
             </div>
         </div>
         <div class="graph_header-subtitle">
@@ -63,8 +67,8 @@
                 let rawResult = await fetch(url, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',  // Ajuste para 'Content-Type'
-                        'Accept': 'application/json',        // Ajuste para 'Accept'
+                        'Content-Type': 'application/json', // Ajuste para 'Content-Type'
+                        'Accept': 'application/json', // Ajuste para 'Accept'
                         'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token
                     },
                     body: JSON.stringify({
