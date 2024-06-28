@@ -15,13 +15,12 @@
 
 <body>
     <div class="container">
-        <div class="sidebar">
-            <img src="/assets/images/project-logo.png">
-        </div>
         <div class="content">
-            <nav>
-                {{ $btn ?? null }}
-            </nav>
+            @if (Auth::check())
+                <nav>
+                    {{ $btn ?? null }}
+                </nav>
+            @endif
             <main>
                 {{ $slot }}
             </main>

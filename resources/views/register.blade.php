@@ -1,7 +1,7 @@
 <x-layout>
-    <section>
+    <section id="task_section">
 
-        <h1>Registrar-se</h1>
+        <h1>Registre-se</h1>
         
         @if ($errors->any())
             <ul class="alert alert-error">
@@ -21,6 +21,6 @@
             <x-form.text_input name="password_confirmation" label="Confirma sua senha:" type="password" placeholder="Confirme sua senha" />
             <x-form.form_button submitTxt="Registrar-se" resetTxt="Limpar"></x-form.form_button>
         </form>
-
+        <p>Ou faça <a href="{{route('login')}}"> Login </a></p>
     </section>
 </x-layout>
