@@ -37,14 +37,13 @@
 
     </section>
 
-
     <section class="list">
 
         <div class="list_header">
-            <select class="list_header-select">
-                <option value="1">
-                    Todas as tarefas
-                </option>
+            <select class="list_header-select" onChange="changeTaskStatusFilter(this)">
+                <option value="all_task"> Todas as Tarefas </option>
+                <option value="task_pending"> Tarefas Pendentes </option>
+                <option value="task_done"> Tarefas Realizadas </option>
             </select>
         </div>
 
@@ -56,6 +55,30 @@
         </div>
 
     </section>
+
+    <script>
+        function changeTaskStatusFilter(element){
+            if(element.value == 'task_pending'){
+                showAllTask();
+                document.querySelectorAll('.task_done').forEach(function(element){
+                    element.style.display = 'none';
+                })
+            } else if (element.value == 'task_done'){
+                showAllTask();
+                document.querySelectorAll('.task_pending').forEach(function(element){
+                    element.style.display = 'none';
+                })
+            } else {
+                showAllTask();
+            }
+        }
+
+        function showAllTask() { //irá mostrar todas as tasks
+            document.querySelectorAll('.task').forEach(function(element){ 
+                element.style.display = 'block';
+            })
+        }
+    </script>
 
     <script>
         async function taskUpdate(element) {
