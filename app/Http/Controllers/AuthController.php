@@ -17,13 +17,15 @@ class AuthController extends Controller
     }
 
     public function login_action(Request $request){
-        $validator = $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::attempt($validator)){
+        if (Auth::attempt($credentials)){
             return redirect()->route('home');
+        } else {
+            return redirect()->back()->withErrors(['email' => 'Credenciais inválidas.'])->withInput();
         };
 
     }
