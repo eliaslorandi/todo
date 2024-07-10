@@ -1,7 +1,7 @@
 :root {
     --background-white: #FCF6D5;
     --background-light: #E9E2BA;
-    --text-dark: #A92916;
+    --text-dark: #861908;
     --color-primary-1: #f39886;
     --color-primary-2: #f37056;
     --color-primary-3: #f54b29;
@@ -16,15 +16,16 @@
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: var(--background-white);
+    overflow-x: hidden;
 }
 
 .container {
     width: 100%;
     height: 100%;
-  
+
 }
 
 nav {
@@ -46,21 +47,21 @@ nav {
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     transform: scale(1.05);
     background-color: #fff;
 }
 
-a.btn{
+a.btn {
     margin-left: 5px;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: var(--color-primary-2);
     color: var(--background-white);
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     transform: scale(1.05);
     background-color: var(--color-primary-3);
 }
@@ -68,6 +69,7 @@ a.btn{
 main {
     display: flex;
     padding: 0px;
+    width: 100%;
 }
 
 section.graph {
@@ -76,7 +78,7 @@ section.graph {
     padding: 20px;
 }
 
-section.graph_placeholder{
+section.graph_placeholder {
     display: flex;
     flex: 1;
 }
@@ -89,7 +91,7 @@ section.graph_placeholder{
 
 section.graph h2 {
     flex: 1;
-    display: inline-block; 
+    display: inline-block;
 }
 
 /* .graph_header-line {
@@ -98,14 +100,14 @@ section.graph h2 {
     height: 1px;
 } */
 
-.graph_header-date{
+.graph_header-date {
     display: flex;
     justify-content: left;
     align-items: center;
     font-size: 15px;
 }
 
-.graph_header-date img{
+.graph_header-date img {
     width: 15px;
 }
 
@@ -120,14 +122,14 @@ section.graph h2 {
     margin: 30px auto;
 }
 
-.graph_header-tasks_left_footer{
+.graph_header-tasks_left_footer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.graph_header-tasks_left_footer img{
+.graph_header-tasks_left_footer img {
     width: 22px;
     margin-right: 5px;
 }
@@ -165,7 +167,7 @@ section.graph h2 {
     transition: all .3s ease-in-out;
 }
 
-.task:hover{
+.task:hover {
     background-color: var(--background-light);
     transform: scale(1.01);
     border-radius: 10px;
@@ -181,7 +183,7 @@ section.graph h2 {
 .task_title {
     padding-left: 10px;
     font-weight: bold;
-}   
+}
 
 .priority,
 .actions {
@@ -193,18 +195,18 @@ section.graph h2 {
 .actions {
     display: flex;
     justify-content: flex-end;
-} 
+}
 
-.actions a{
+.actions a {
     margin-left: 10px;
     transition: all .3s ease-in-out;
 }
 
-.actions a:hover{
+.actions a:hover {
     transform: scale(1.30);
 }
 
-.actions img{
+.actions img {
     width: 22px;
 }
 
@@ -216,39 +218,57 @@ section.graph h2 {
     background-color: rgb(128, 68, 0);
 }
 
-#task_section{
-    margin: auto;
-    padding-top: 8%;
+form {
+    content: '';
+    display: block;
+    width: 100%;
+    /* height: 100%; */
+    border: 1px solid var(--text-dark);
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#task_section>h1{
+#task_section {
+    margin: auto;
+    padding: 10px;
+    padding-top: 8%;
+    max-width: 400px; /* Defina uma largura máxima desejada */
+    width: 100%;
+}
+
+#task_section>h1 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.inputArea{
+.inputArea {
     display: block;
     margin: 10px 0 20px 0;
 }
 
-.inputArea>label{
+.inputArea>label {
     display: block;
     margin-bottom: 5px;
     margin-left: 5px;
 }
 
-.inputArea>input, .inputArea>select{
+.inputArea>input,
+.inputArea>select {
     height: 40px;
-    width: 400px;
+    width: 100%; /* Ajuste para ocupar toda a largura disponível */
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 5px 10px;
+    box-sizing: border-box; /* Garante que o padding esteja incluído na largura total */
 }
 
 .inputArea>textarea {
     height: 120px;
-    width: 400px;
+    width: 100%; 
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 5px 10px;
+    box-sizing: border-box;
 }
