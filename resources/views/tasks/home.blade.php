@@ -1,12 +1,10 @@
 <x-layout>
 
     <x-slot:btn>
-        <a href="{{ route('task.create') }}" class="btn btn-primary">
-            Criar Tarefa
-        </a>
-        <a href="{{ route('logout') }}" class="btn btn-primary">
-            Sair
-        </a>
+        <div class="nav-links">
+            <a href="{{ route('task.create') }}" class="btn btn-white1">Criar Tarefa</a>
+            <a href="{{ route('logout') }}" class="btn btn-white1">Sair</a>
+        </div>
     </x-slot:btn>
 
     <section class="graph">
@@ -15,11 +13,11 @@
             <h2> Progresso </h2>
             {{-- <div class="graph_header-line"></div> --}}
             <div class="graph_header-date">
-                <a href="{{route('home', ['date' => $datePrevButton])}}">
+                <a href="{{ route('home', ['date' => $datePrevButton]) }}">
                     <img src="/assets/images/prev-icon.png" alt="">
                 </a>
                 {{ $dateAsString }}
-                <a href="{{route('home', ['date' => $dateNextButton])}}">
+                <a href="{{ route('home', ['date' => $dateNextButton]) }}">
                     <img src="/assets/images/next-icon.png" alt="">
                 </a>
             </div>
@@ -57,15 +55,15 @@
     </section>
 
     <script>
-        function changeTaskStatusFilter(element){
-            if(element.value == 'task_pending'){
+        function changeTaskStatusFilter(element) {
+            if (element.value == 'task_pending') {
                 showAllTask();
-                document.querySelectorAll('.task_done').forEach(function(element){
+                document.querySelectorAll('.task_done').forEach(function(element) {
                     element.style.display = 'none';
                 })
-            } else if (element.value == 'task_done'){
+            } else if (element.value == 'task_done') {
                 showAllTask();
-                document.querySelectorAll('.task_pending').forEach(function(element){
+                document.querySelectorAll('.task_pending').forEach(function(element) {
                     element.style.display = 'none';
                 })
             } else {
@@ -74,7 +72,7 @@
         }
 
         function showAllTask() { //irá mostrar todas as tasks
-            document.querySelectorAll('.task').forEach(function(element){ 
+            document.querySelectorAll('.task').forEach(function(element) {
                 element.style.display = 'block';
             })
         }

@@ -1,10 +1,12 @@
 :root {
-    --background-white: #FCF6D5;
-    --background-light: #E9E2BA;
-    --text-dark: #861908;
-    --color-primary-1: #f39886;
-    --color-primary-2: #f37056;
-    --color-primary-3: #f54b29;
+    --background-white-1: rgb(246, 253, 253);
+    --background-white-2: rgb(223, 231, 233);
+    --background-white-3: rgb(189, 196, 197);
+    --background-white-4: rgb(152, 160, 162);
+    --color-primary-1: rgb(99, 82, 152);
+    --color-primary-2: rgb(85, 67, 132);
+    --color-primary-3: rgb(75, 56, 117);
+    --color-primary-4: rgb(64, 45, 103);
 }
 
 * {
@@ -12,30 +14,46 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Rubik, sans-serif;
-    color: var(--text-dark)
+    color: var(--color-primary-4)
 }
 
 body {
     width: 100%;
     height: 100%;
-    background-color: var(--background-white);
+    background-color: var(--background-white-1); 
     overflow-x: hidden;
 }
 
 .container {
     width: 100%;
     height: 100%;
-
-}
+}   
 
 nav {
-    background-color: var(--background-light);
+    background-color: var(--color-primary-3);
     height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 20px;
+    justify-content: space-between; /* Espaça o logo e os botões de ação */
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 70px;
+}
+
+nav .btn{
+    align-items: flex-end;
+}
+
+.nav-links {
+    display: flex;
+    align-items: left;
+}
+
+.nav-links a {
+    margin-left: 10px;
 }
 
 .btn {
@@ -45,25 +63,27 @@ nav {
     text-decoration: none;
     transition: all .3s ease-in-out;
     cursor: pointer;
+    background-color: var(--color-primary-1);
+    color: var(--background-white-1);
 }
 
 .btn:hover {
     transform: scale(1.05);
-    background-color: #fff;
+    background-color: var(--color-primary-4);
 }
 
 a.btn {
     margin-left: 5px;
 }
 
-.btn-primary {
-    background-color: var(--color-primary-2);
-    color: var(--background-white);
+.btn-white1 {
+    color: var(--color-primary-4);
+    background-color: var(--background-white-1);
 }
 
-.btn-primary:hover {
+.btn-white1:hover {
     transform: scale(1.05);
-    background-color: var(--color-primary-3);
+    background-color: var(--background-white-2);
 }
 
 main {
@@ -168,7 +188,7 @@ section.graph h2 {
 }
 
 .task:hover {
-    background-color: var(--background-light);
+    background-color: var(--background-white-2);
     transform: scale(1.01);
     border-radius: 10px;
     overflow: hidden;
@@ -223,11 +243,12 @@ form {
     display: block;
     width: 100%;
     /* height: 100%; */
-    border: 1px solid var(--text-dark);
+    border: 1px solid var(--background-white-2);
     padding: 5px 15px;
     border-radius: 10px;
+    margin-top: 10px;
     margin-bottom: 15px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 #task_section {
@@ -257,11 +278,11 @@ form {
 .inputArea>input,
 .inputArea>select {
     height: 40px;
-    width: 100%; /* Ajuste para ocupar toda a largura disponível */
+    width: 100%; 
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 5px 10px;
-    box-sizing: border-box; /* Garante que o padding esteja incluído na largura total */
+    box-sizing: border-box; 
 }
 
 .inputArea>textarea {

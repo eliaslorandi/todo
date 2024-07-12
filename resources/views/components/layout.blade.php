@@ -17,9 +17,11 @@
     <div class="container">
         <div class="content">
             @if (Auth::check())
-                <nav>
-                    {{ $btn ?? null }}
-                </nav>
+                <x-navbar>
+                    <x-slot name="slot">
+                        {{ $btn ?? '' }}
+                    </x-slot>
+                </x-navbar>
             @endif
             <main>
                 {{ $slot }}

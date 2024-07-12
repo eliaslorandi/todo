@@ -1,7 +1,7 @@
 <x-layout page="Edit Task">
 
     <x-slot:btn>
-        <a href="{{route('home')}}" class="btn btn-primary">
+        <a href="{{route('home')}}" class="btn btn-white1">
             Voltar
         </a>
     </x-slot:btn>
@@ -51,10 +51,10 @@
             value="{{$task->description}}"
             />
             
-            <x-form.form_button 
+            <x-button.form_button 
             submitTxt="Atualizar tarefa" 
             resetTxt="Limpar">
-            </x-form.form_button>
+            </x-button.form_button>
 
         </form>
     </section>

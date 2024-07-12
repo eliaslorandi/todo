@@ -13,7 +13,7 @@ class AuthController extends Controller
         if(Auth::check()){ //irá conferir se a seção é valida, mais rapido que o ::User
             return redirect()->route('home');
         }
-        return view('login');
+        return view('auth/login');
     }
 
     public function login_action(Request $request){
@@ -36,7 +36,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return view('register');
+        return view('auth/register');
     }
 
     public function register_action(Request $request){
