@@ -24,6 +24,15 @@
 
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let dueDateInput = document.querySelector('input[name="due_date"]');
+            let now = new Date();
+            now.setHours(now.getHours() - 3); //Ajusta o horário para GMT-3
+            let formattedDate = now.toISOString().slice(0, 16);//Formata a data no formato YYYY-MM-DDTHH:MM
+            dueDateInput.value = formattedDate;
+        });
+    </script>
     {{-- <div class="inputArea">
                     <label for="title">
                         Titulo da Tarefa:
