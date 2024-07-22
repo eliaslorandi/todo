@@ -23,14 +23,14 @@
             </div>
         </div>
         <div class="graph_header-subtitle">
-            Tarefas: <b> 3/6 </b>
+            Tarefas concluídas: <b> {{$done_tasks_count}}/{{$tasks_count}} </b>
         </div>
         <div class="graph_placeholder">
 
         </div>
         <div class="graph_header-tasks_left_footer">
             <img src="/assets/images/info_icon.png">
-            Restam 3 tarefas
+            Restam {{$undone_tasks_count}} tarefa(s)
         </div>
 
     </section>
