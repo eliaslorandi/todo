@@ -19,7 +19,7 @@
             <x-form.text_input name="email" label="Email:" type="email" placeholder="Digite seu email" />
             <x-form.text_input name="password" label="Senha:" type="password" placeholder="Digite sua senha" />
             <x-form.text_input name="password_confirmation" label="Confirmar senha:" type="password" placeholder="Confirme sua senha" />
-            <div class="login-btn">
+            <div class="large-btn">
                 <x-form.form_button submitTxt="Registrar-se"></x-form.form_button>
             </div>
             <div class="group">
