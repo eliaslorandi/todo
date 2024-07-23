@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="graph_header-subtitle">
-            Tarefas concluídas: <b> {{$done_tasks_count}}/{{$tasks_count}} </b>
+            Tarefas concluídas: <b id="doneTasksCount"> {{ $done_tasks_count }}/{{ $tasks_count }} </b>
         </div>
         <div class="graph_placeholder">
 
@@ -97,6 +97,7 @@
 
                 if (result.success) {
                     alert('Task atualizada');
+                    updateTaskCounters(status);
                 } else {
                     element.checked = !status;
                     alert('Erro ao atualizar a tarefa');
@@ -105,6 +106,20 @@
                 element.checked = !status;
                 alert('Erro ao atualizar a tarefa');
                 console.error('Erro:', error);
+            }
+
+            function updateTaskCounters(status) {
+                let doneTasksCountElement = document.getElementById('doneTasksCount');
+                let doneTasksText = doneTasksCountElement.innerText;
+                let [done, total] = doneTasksText.split('/').map(Number);
+
+                if (status) {
+                    done += 1;
+                } else {
+                    done -= 1;
+                }
+
+                doneTasksCountElement.innerText = `${done}/${total}`;
             }
         }
     </script>
