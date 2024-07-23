@@ -11,7 +11,6 @@
 
         <div class="graph_header">
             <h2> Progresso </h2>
-            {{-- <div class="graph_header-line"></div> --}}
             <div class="graph_header-date">
                 <a href="{{ route('home', ['date' => $datePrevButton]) }}">
                     <img src="/assets/images/prev-icon.png" alt="">
@@ -28,10 +27,10 @@
         <div class="graph_placeholder">
 
         </div>
-        <div class="graph_header-tasks_left_footer">
+        {{-- <div class="graph_header-tasks_left_footer">
             <img src="/assets/images/info_icon.png">
             Restam {{$undone_tasks_count}} tarefa(s)
-        </div>
+        </div> --}}
 
     </section>
 
@@ -46,9 +45,8 @@
         </div>
 
         <div class="task_list">
-
             @foreach ($tasks as $task)
-                <x-task :data=$task />
+                <x-task :data=$task /> {{--  o ":" indica que passamos uma variavel php para o componente --}}
             @endforeach
         </div>
 
@@ -56,25 +54,22 @@
 
     <script>
         function changeTaskStatusFilter(element) {
+            showAllTask();
             if (element.value == 'task_pending') {
-                showAllTask();
                 document.querySelectorAll('.task_done').forEach(function(element) {
                     element.style.display = 'none';
-                })
+                });
             } else if (element.value == 'task_done') {
-                showAllTask();
                 document.querySelectorAll('.task_pending').forEach(function(element) {
                     element.style.display = 'none';
-                })
-            } else {
-                showAllTask();
+                });
             }
         }
 
-        function showAllTask() { //irá mostrar todas as tasks
+        function showAllTask() {
             document.querySelectorAll('.task').forEach(function(element) {
-                element.style.display = 'block';
-            })
+                element.style.display = 'flex';
+            });
         }
     </script>
 
