@@ -23,9 +23,10 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)){
+            //echo dd($credentials);
             return redirect()->route('home');
         } else {
-            return redirect()->back()->withErrors(['email' => 'Credenciais inválidas.'])->withInput();
+            return redirect()->back()->withErrors(['email' => 'Credencial inválida.',])->withInput();
         };
 
     }

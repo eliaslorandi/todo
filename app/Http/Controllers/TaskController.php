@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -20,10 +21,29 @@ class TaskController extends Controller
     }
 
     public function create_action(Request $request) {
-        $task = $request->only(['title', 'category_id', 'description', 'due_date']);
-        $task['user_id'] = 1;
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'due_date' => 'required|date',
+            'category_id' => 'required|exists:categories,id', //exige que valor exista na tabela categories, coluna id
+            'description' => 'nullable|string',
+        ]);
 
-        $dbTask = Task::create($task);
+
+
+        
+
+
+
+        
+
+        //Coleta as infos da tarefa e vincula ao usuario
+        $task = $request->only(['title', 'due_date', 'category_id', 'description']);
+        $task['user_id'] = Auth::id();
+
+        //Cria tarefa no db
+        
+        Task::create($task);
+
         return redirect(route('home'));
     }
 
@@ -36,7 +56,6 @@ class TaskController extends Controller
         }
         $categories = Category::all();
         $data['categories'] = $categories;
-
         $data['task'] = $task;
 
         return view('tasks.edit', $data);
