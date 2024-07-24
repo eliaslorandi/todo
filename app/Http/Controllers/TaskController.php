@@ -25,7 +25,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:100',
             'due_date' => 'required|date',
             'category_id' => 'required|exists:categories,id', //exige que valor exista na tabela categories, coluna id
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
       
         //Coleta as infos da tarefa e vincula ao usuario

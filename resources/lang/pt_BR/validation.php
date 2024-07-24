@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'title'             => 'O campo :attribute deve ser preenchido.',
     'accepted'             => 'O campo :attribute deve ser aceito.',
     'accepted_if'          => 'O :attribute deve ser aceito quando :other for :value.',
     'active_url'           => 'O campo :attribute deve conter uma URL válida.',
@@ -151,4 +150,9 @@ return [
     'uppercase'            => 'O :attribute deve ser maiúsculo.',
     'url'                  => 'O formato da URL informada para o campo :attribute é inválido.',
     'uuid'                 => 'O campo :attribute deve ser um UUID válido.',
+    'attributes' => [
+        'title' => 'TITULO',
+        'category_id' => 'CATEGORIA',
+        'description' => 'DESCRIÇÃO',
+    ]
 ];
