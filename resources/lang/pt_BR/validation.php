@@ -151,7 +151,7 @@ return [
     'url'                  => 'O formato da URL informada para o campo :attribute é inválido.',
     'uuid'                 => 'O campo :attribute deve ser um UUID válido.',
     'attributes' => [
-        'title' => 'TITULO',
+        'title' => 'TÍTULO',
         'category_id' => 'CATEGORIA',
         'description' => 'DESCRIÇÃO',
     ]

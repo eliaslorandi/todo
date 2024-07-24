@@ -20,11 +20,12 @@
         @endif
         <form method="POST" action="{{ route('task.create_action') }}">
             @csrf {{-- autenticação token pra enviar formulario --}}
-            <x-form.text_input name="title" label="Titulo da tarefa:" placeholder="Digite o título" />
+            <x-form.text_input name="title" label="Título:" placeholder="Digite o título" />
             <x-form.text_input name="due_date" label="Data de realização:" type="datetime-local" />
             <x-form.select_input name="category_id" label="Categoria:">
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    <option value="{{ $category->id }}" {{old('category_id') == $category->id ? 'selected' : ''}}>
+                        {{ $category->title }}</option>
                 @endforeach
             </x-form.select_input>
             <x-form.text_area_input name="description" label="Descrição:" placeholder="Digite a descrição" />

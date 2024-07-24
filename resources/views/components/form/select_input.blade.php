@@ -3,7 +3,7 @@
         {{ $label ?? '' }}
     </label>
     <select id="{{ $name }}" name="{{ $name }}" {{ empty($required) ? '' : 'required' }}>
-        <option selected disable value=""> Selecione uma categoria </option>
+        <option value="" disabled {{ old($name) ? '' : 'selected' }}>Selecione uma categoria</option>
         {{ $slot }}
     </select>
 </div>
