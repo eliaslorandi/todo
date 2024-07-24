@@ -27,21 +27,12 @@ class TaskController extends Controller
             'category_id' => 'required|exists:categories,id', //exige que valor exista na tabela categories, coluna id
             'description' => 'nullable|string',
         ]);
-
-
-
-        
-
-
-
-        
-
+      
         //Coleta as infos da tarefa e vincula ao usuario
         $task = $request->only(['title', 'due_date', 'category_id', 'description']);
         $task['user_id'] = Auth::id();
 
         //Cria tarefa no db
-        
         Task::create($task);
 
         return redirect(route('home'));

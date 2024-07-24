@@ -16,8 +16,14 @@
         <a href="{{route('task.edit', ['id' => $data['id']])}}">
             <img src="/assets/images/edit_icon.png">
         </a>
-        <a href="{{route('task.delete', ['id' => $data['id']])}}">
+        <a href="{{route('task.delete', ['id' => $data['id']])}}" onclick="return confirmDelete()">
             <img src="/assets/images/trash_icon.png">
         </a>
     </div>
 </div>
+
+<script>
+    function confirmDelete(){
+        return confirm("Deseja excluir a tarefa?");
+    }
+</script>
