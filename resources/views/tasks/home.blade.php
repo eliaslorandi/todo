@@ -37,7 +37,7 @@
     <section class="list">
 
         <div class="list_header">
-            <select class="list_header-select" onChange="changeTaskStatusFilter(this)">
+            <select class="list_header-select" onChange="taskStatusFilter(this)">
                 <option value="all_task"> Todas as Tarefas </option>
                 <option value="task_pending"> Tarefas Pendentes </option>
                 <option value="task_done"> Tarefas Realizadas </option>
@@ -53,7 +53,69 @@
     </section>
 
     <script>
-        function changeTaskStatusFilter(element) {
+        async function taskUpdate(element) { 
+            let status = element.checked; //coleta de dados
+            let taskId = element.dataset.id;
+            let url = '{{ route('task.update') }}';
+
+            try {
+                let rawResult = await fetch(url, { //requisição
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Ajuste para 'Content-Type'
+                        'Accept': 'application/json', // Ajuste para 'Accept'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token
+                    },
+                    body: JSON.stringify({
+                        status,
+                        taskId
+                    })
+                });
+
+                let result = await rawResult.json(); //resposta da requisição
+
+                if (result.success) { //sucesso, é atualizado o status e chama funções auxiliares
+                    updateTaskInUI(taskId, status);
+                    alert('Task atualizada');
+                    updateTaskCounters(status);
+                    filterTask();
+                } else {
+                    element.checked = !status;
+                    alert('Erro ao atualizar a tarefa');
+                }
+            } catch (error) {
+                element.checked = !status;
+                alert('Erro ao atualizar a tarefa');
+                console.error('Erro:', error);
+            }
+        }
+
+        function updateTaskInUI(taskId, status) { //atualiza o css para exibir a tarefa em seu filtro atual
+            let taskElement = document.querySelector(`[data-id='${taskId}']`).closest('.task');
+            if (status) {
+                taskElement.classList.remove('task_pending');
+                taskElement.classList.add('task_done');
+            } else {
+                taskElement.classList.remove('task_done');
+                taskElement.classList.add('task_pending');
+            }
+        }
+
+        function updateTaskCounters(status) { //atualiza o contador de tarefas
+            let doneTasksCountElement = document.getElementById('doneTasksCount');
+            let doneTasksText = doneTasksCountElement.innerText;
+            let [done, total] = doneTasksText.split('/').map(Number);
+
+            if (status) {
+                done += 1;
+            } else {
+                done -= 1;
+            }
+
+            doneTasksCountElement.innerText = `${done}/${total}`;
+        }
+
+        function taskStatusFilter(element) { //filtro de tarefas
             showAllTask();
             if (element.value == 'task_pending') {
                 document.querySelectorAll('.task_done').forEach(function(element) {
@@ -67,62 +129,25 @@
         }
 
         function showAllTask() {
-            document.querySelectorAll('.task').forEach(function(element) {
-                element.style.display = 'flex';
+            document.querySelectorAll('.task').forEach(function(task) {
+                task.style.display = 'flex';
             });
         }
-    </script>
 
-    <script>
-        async function taskUpdate(element) {
-            let status = element.checked;
-            let taskId = element.dataset.id;
-            let url = '{{ route('task.update') }}';
-
-            try {
-                let rawResult = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json', // Ajuste para 'Content-Type'
-                        'Accept': 'application/json', // Ajuste para 'Accept'
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token
-                    },
-                    body: JSON.stringify({
-                        status,
-                        taskId
-                    })
-                });
-
-                let result = await rawResult.json();
-
-                if (result.success) {
-                    alert('Task atualizada');
-                    updateTaskCounters(status);
-                } else {
-                    element.checked = !status;
-                    alert('Erro ao atualizar a tarefa');
-                }
-            } catch (error) {
-                element.checked = !status;
-                alert('Erro ao atualizar a tarefa');
-                console.error('Erro:', error);
-            }
-
-            function updateTaskCounters(status) {
-                let doneTasksCountElement = document.getElementById('doneTasksCount');
-                let doneTasksText = doneTasksCountElement.innerText;
-                let [done, total] = doneTasksText.split('/').map(Number);
-
-                if (status) {
-                    done += 1;
-                } else {
-                    done -= 1;
-                }
-
-                doneTasksCountElement.innerText = `${done}/${total}`;
-            }
+        function filterTask() {
+            let filter = document.querySelector('.list_header-select').value;
+            taskStatusFilter({ value: filter });
         }
     </script>
 
 
 </x-layout>
+
+
+Melhorias na atualização do status das tarefas
+
+- Adicionada função 'taskUpdate' para enviar requisições AJAX e atualizar o status das tarefas.
+- Implementada função 'updateTaskInUI' para atualizar a interface do usuário com base no status da tarefa.
+- Incluída função 'updateTaskCounters' para ajustar o contador de tarefas concluídas.
+- Adicionadas funções 'changeTaskStatusFilter', 'showAllTask' e 'filterTask' para gerenciar os filtros de exibição das tarefas.
+- Correção de bugs relacionados ao filtro de tarefas e mensagens de erro.

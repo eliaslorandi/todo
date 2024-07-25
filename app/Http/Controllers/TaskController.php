@@ -64,15 +64,18 @@ class TaskController extends Controller
         return redirect(route('home'));
     }
 
-    public function update(Request $request){
-        $task = Task::findOrFail($request->taskId);
-        if(!$task){
-            return ['sucess' => false];
-        }
-        $task->is_done = $request->status;
-        $task->save();
-        return['success' => true];
+    public function update(Request $request)
+{
+    $task = Task::findOrFail($request->taskId);
+    if (!$task) {
+        return response()->json(['success' => false, 'message' => 'Task não encontrada'], 404);
     }
+    $task->is_done = $request->status ? 1 : 0;
+    $task->save();
+
+    return response()->json(['success' => true, 'task' => $task]);
+}
+
 
     public function delete(Request $request){
         $id = $request->id;
