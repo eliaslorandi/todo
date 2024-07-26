@@ -7,11 +7,11 @@
         </div>
     </x-slot:btn>
 
-    <section class="graph">
+    <section class="calendar">
 
-        <div class="graph_header">
+        <div class="calendar_header">
             <h2> Progresso </h2>
-            <div class="graph_header-date">
+            <div class="calendar_header-date">
                 <a href="{{ route('home', ['date' => $datePrevButton]) }}">
                     <img src="/assets/images/prev-icon.png" alt="">
                 </a>
@@ -21,13 +21,13 @@
                 </a>
             </div>
         </div>
-        <div class="graph_header-subtitle">
+        <div class="calendar_header-subtitle">
             Tarefas concluídas: <b id="doneTasksCount"> {{ $done_tasks_count }}/{{ $tasks_count }} </b>
         </div>
-        <div class="graph_placeholder">
-
+        <div class="calendar_placeholder">
+            <div id="calendar"></div>
         </div>
-        {{-- <div class="graph_header-tasks_left_footer">
+        {{-- <div class="calendar_header-tasks_left_footer">
             <img src="/assets/images/info_icon.png">
             Restam {{$undone_tasks_count}} tarefa(s)
         </div> --}}
@@ -53,7 +53,7 @@
     </section>
 
     <script>
-        async function taskUpdate(element) { 
+        async function taskUpdate(element) {
             let status = element.checked; //coleta de dados
             let taskId = element.dataset.id;
             let url = '{{ route('task.update') }}';
@@ -136,18 +136,11 @@
 
         function filterTask() {
             let filter = document.querySelector('.list_header-select').value;
-            taskStatusFilter({ value: filter });
+            taskStatusFilter({
+                value: filter
+            });
         }
     </script>
 
 
 </x-layout>
-
-
-Melhorias na atualização do status das tarefas
-
-- Adicionada função 'taskUpdate' para enviar requisições AJAX e atualizar o status das tarefas.
-- Implementada função 'updateTaskInUI' para atualizar a interface do usuário com base no status da tarefa.
-- Incluída função 'updateTaskCounters' para ajustar o contador de tarefas concluídas.
-- Adicionadas funções 'changeTaskStatusFilter', 'showAllTask' e 'filterTask' para gerenciar os filtros de exibição das tarefas.
-- Correção de bugs relacionados ao filtro de tarefas e mensagens de erro.

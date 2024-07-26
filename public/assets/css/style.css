@@ -92,58 +92,56 @@ main {
     width: 100%;
 }
 
-section.graph {
+section.calendar {
     width: 30%;
     height: 100%;
     padding: 20px;
 }
 
-section.graph_placeholder {
+section.calendar_placeholder {
     display: flex;
     flex: 1;
 }
 
-.graph_header {
+.calendar_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-section.graph h2 {
+section.calendar h2 {
     flex: 1;
     display: inline-block;
 }
 
-.graph_header-date {
+.calendar_header-date {
     display: flex;
     justify-content: left;
     align-items: center;
     font-size: 15px;
 }
 
-.graph_header-date img {
+.calendar_header-date img {
     width: 15px;
 }
 
-.graph_header-subtitle {
+.calendar_header-subtitle {
     margin-top: 10px;
 }
 
-.graph_placeholder {
-    background-color: #ccc;
-    width: 300px;
-    height: 300px;
-    margin: 30px auto;
+.calendar_placeholder {
+    
+    margin-top: 30px;
 }
 
-.graph_header-tasks_left_footer {
+.calendar_header-tasks_left_footer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.graph_header-tasks_left_footer img {
+.calendar_header-tasks_left_footer img {
     width: 22px;
     margin-right: 5px;
 }
