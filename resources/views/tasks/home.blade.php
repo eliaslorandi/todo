@@ -45,14 +45,39 @@
         </div>
 
         <div class="task_list">
-            @foreach ($tasks as $task)
+            @foreach ($tasks_for_day as $task) {{-- pega as tarefas do dia selecionado --}}
                 <x-task :data=$task /> {{--  o ":" indica que passamos uma variavel php para o componente --}}
             @endforeach
         </div>
 
     </section>
 
+    {{-- Inicio Fullcalendar --}}
+    <script src="/assets/js/index.global.min.js"></script>
+    <script src="/assets/js/core/locales-all.global.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar'); //recebe o seletor do atributo id
+            var calendar = new FullCalendar.Calendar(calendarEl, { //instancia FullCalendar e atribui a variavel
+                locale: 'pt-br',
+                dateClick: function(info) {
+                    var selectedDate = info.dateStr; // Formato 'YYYY-MM-DD'
+                    window.location.href = '{{ route('home') }}?date=' + selectedDate;
+                },
+                events: [
+                    @foreach($tasks as $task)
+                        {
+                            title: '{{ $task->title }}',
+                            start: '{{ $task->due_date }}',
+                            color: '{{ $task->is_done ? 'green' : 'red' }}'
+                        },
+                    @endforeach
+                ]
+            });
+            calendar.render();
+        });
+        // fim Fullcalendar
+
         async function taskUpdate(element) {
             let status = element.checked; //coleta de dados
             let taskId = element.dataset.id;
@@ -136,11 +161,8 @@
 
         function filterTask() {
             let filter = document.querySelector('.list_header-select').value;
-            taskStatusFilter({
-                value: filter
-            });
+            taskStatusFilter({ value: filter });
         }
     </script>
-
 
 </x-layout>

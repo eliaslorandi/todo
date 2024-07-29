@@ -9,30 +9,36 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         //dd($request->date);
-        if($request->date){
-            $filteredDate = $request->date;
-        } else {
-            $filteredDate = date('Y-m-d');
-        }
 
-        $carbonDate = Carbon::createFromFormat('Y-m-d', $filteredDate, 'America/Sao_Paulo');//Lib carbon para formatar data
+        // Definindo a data filtrada
+        $filteredDate = $request->date ? $request->date : date('Y-m-d');
 
-        $data['dateAsString'] = $carbonDate ->translatedFormat('d M');
-        $data['datePrevButton'] = $carbonDate->addDay(-1)->translatedFormat('Y-m-d'); //volta 1 dia
-        $data['dateNextButton'] = $carbonDate->addDay(2)->translatedFormat('Y-m-d'); //avança 1 dia
+        $carbonDate = Carbon::createFromFormat('Y-m-d', $filteredDate, 'America/Sao_Paulo');
 
-        //autenticação do usuario
+        // Configurando as variáveis para a view
+        $data['dateAsString'] = $carbonDate->translatedFormat('d M');
+        $data['datePrevButton'] = $carbonDate->copy()->subDay()->translatedFormat('Y-m-d');
+        $data['dateNextButton'] = $carbonDate->copy()->addDay()->translatedFormat('Y-m-d');
+
+        // Obtendo o usuário autenticado
         $user = Auth::user();
 
-        //Filtragem das tasks pelo id do usuario
-        $data['tasks'] = Task::where('user_id', $user->id)->whereDate('due_date', $filteredDate)->get();
+        // Filtrando tarefas por usuário
+        $data['tasks'] = Task::where('user_id', $user->id)->get();
 
-        $data['tasks_count'] = $data['tasks']->count();
-        $data['done_tasks_count'] = $data['tasks']->where('is_done', true)->count();
-        $data['undone_tasks_count'] = $data['tasks']->where('is_done', false)->count();
+        // Filtrando tarefas do dia selecionado
+        $data['tasks_for_day'] = Task::where('user_id', $user->id)
+            ->whereDate('due_date', $filteredDate)
+            ->get();
+
+        // Contando tarefas
+        $data['tasks_count'] = $data['tasks_for_day']->count();
+        $data['done_tasks_count'] = $data['tasks_for_day']->where('is_done', true)->count();
+        $data['undone_tasks_count'] = $data['tasks_for_day']->where('is_done', false)->count();
 
         return view('tasks/home', $data);
     }
