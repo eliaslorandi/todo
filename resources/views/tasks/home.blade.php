@@ -8,7 +8,6 @@
     </x-slot:btn>
 
     <section class="calendar">
-
         <div class="calendar_header">
             <h2> Progresso </h2>
             <div class="calendar_header-date">
@@ -45,8 +44,7 @@
         </div>
 
         <div class="task_list">
-            @foreach ($tasks_for_day as $task)
-                {{-- pega as tarefas do dia selecionado --}}
+            @foreach ($tasks_for_day as $task) {{-- pega as tarefas do dia selecionado --}}
                 <x-task :data=$task /> {{--  o ":" indica que passamos uma variavel php para o componente --}}
             @endforeach
         </div>
@@ -78,13 +76,13 @@
                 eventContent: function(arg) {
                     // Cria um elemento para o status (bolinha)
                     let statusCircle = document.createElement('div');
-                    statusCircle.style.width = '10px';
-                    statusCircle.style.height = '10px';
+                    statusCircle.style.width = '7px';
+                    statusCircle.style.height = '7px';
                     statusCircle.style.borderRadius = '50%';
                     statusCircle.style.backgroundColor = arg.event.backgroundColor;
                     statusCircle.style.display = 'inline-block';
-                    statusCircle.style.marginRight = '5px';
-                    statusCircle.style.verticalAlign = 'middle';
+                    statusCircle.style.marginRight = '2px';
+                    statusCircle.style.flexShrink = '0';
 
                     // Cria um elemento para o título
                     let title = document.createElement('span');
@@ -106,7 +104,6 @@
                     return {
                         domNodes: [container]
                     };
-
                 }
             });
             calendar.render();
