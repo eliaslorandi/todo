@@ -45,7 +45,8 @@
         </div>
 
         <div class="task_list">
-            @foreach ($tasks_for_day as $task) {{-- pega as tarefas do dia selecionado --}}
+            @foreach ($tasks_for_day as $task)
+                {{-- pega as tarefas do dia selecionado --}}
                 <x-task :data=$task /> {{--  o ":" indica que passamos uma variavel php para o componente --}}
             @endforeach
         </div>
@@ -58,33 +59,67 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar'); //recebe o seletor do atributo id
-            var calendar = new FullCalendar.Calendar(calendarEl, { //instancia FullCalendar e atribui a variavel
+            window.calendar = new FullCalendar.Calendar(calendarEl, { //instancia FullCalendar e atribui a variavel
                 locale: 'pt-br',
                 dateClick: function(info) {
                     var selectedDate = info.dateStr; // Formato 'YYYY-MM-DD'
                     window.location.href = '{{ route('home') }}?date=' + selectedDate;
                 },
                 events: [
-                    @foreach($tasks as $task)
+                    @foreach ($tasks as $task)
                         {
+                            id: '{{ $task->id }}',
                             title: '{{ $task->title }}',
                             start: '{{ $task->due_date }}',
                             color: '{{ $task->is_done ? 'green' : 'red' }}'
                         },
                     @endforeach
-                ]
+                ],
+                eventContent: function(arg) {
+                    // Cria um elemento para o status (bolinha)
+                    let statusCircle = document.createElement('div');
+                    statusCircle.style.width = '10px';
+                    statusCircle.style.height = '10px';
+                    statusCircle.style.borderRadius = '50%';
+                    statusCircle.style.backgroundColor = arg.event.backgroundColor;
+                    statusCircle.style.display = 'inline-block';
+                    statusCircle.style.marginRight = '5px';
+                    statusCircle.style.verticalAlign = 'middle';
+
+                    // Cria um elemento para o título
+                    let title = document.createElement('span');
+                    title.innerHTML = arg.event.title;
+                    title.style.whiteSpace = 'nowrap'; // Não permite quebra de linha
+                    title.style.overflow = 'hidden'; // Oculta o texto que ultrapassa o contêiner
+                    title.style.textOverflow = 'ellipsis'; // Adiciona reticências ao final do texto se ele for muito longo
+
+                    // Cria um contêiner para o status e título
+                    let container = document.createElement('div');
+                    container.style.display = 'flex'; // Usa flexbox para alinhar o status e o título
+                    container.style.alignItems = 'center'; // Alinha verticalmente os itens
+                    container.style.overflow = 'hidden'; // Oculta qualquer conteúdo que ultrapasse o contêiner
+                    container.style.whiteSpace = 'nowrap'; // Impede quebra de linha
+                    container.style.textOverflow = 'ellipsis'; // Adiciona reticências ao final do texto se necessário
+                    container.appendChild(statusCircle);
+                    container.appendChild(title);
+
+                    return {
+                        domNodes: [container]
+                    };
+
+                }
             });
             calendar.render();
         });
         // fim Fullcalendar
 
         async function taskUpdate(element) {
-            let status = element.checked; //coleta de dados
+            let status = element.checked; // coleta de dados
             let taskId = element.dataset.id;
             let url = '{{ route('task.update') }}';
 
             try {
-                let rawResult = await fetch(url, { //requisição
+                let rawResult = await fetch(url, { // requisição
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json', // Ajuste para 'Content-Type'
@@ -97,10 +132,11 @@
                     })
                 });
 
-                let result = await rawResult.json(); //resposta da requisição
+                let result = await rawResult.json(); // resposta da requisição
 
-                if (result.success) { //sucesso, é atualizado o status e chama funções auxiliares
+                if (result.success) { // sucesso, é atualizado o status e chama funções auxiliares
                     updateTaskInUI(taskId, status);
+                    updateTaskInCalendar(taskId, status); // Atualiza o calendário
                     alert('Task atualizada');
                     updateTaskCounters(status);
                     filterTask();
@@ -123,6 +159,13 @@
             } else {
                 taskElement.classList.remove('task_done');
                 taskElement.classList.add('task_pending');
+            }
+        }
+
+        function updateTaskInCalendar(taskId, status) {
+            let event = window.calendar.getEventById(taskId);
+            if (event) {
+                event.setProp('color', status ? 'green' : 'red');
             }
         }
 
@@ -161,7 +204,9 @@
 
         function filterTask() {
             let filter = document.querySelector('.list_header-select').value;
-            taskStatusFilter({ value: filter });
+            taskStatusFilter({
+                value: filter
+            });
         }
     </script>
 

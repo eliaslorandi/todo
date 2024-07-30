@@ -92,8 +92,27 @@ main {
     width: 100%;
 }
 
+/* CALENDARIO */
+
+#calendar{
+    font-size: 12px;
+}
+
+#calendar .fc-scroller-harness {
+ cursor: pointer;
+}
+
+.c-toolbar-title{
+    font-size: 10px;
+}
+
+.fc-icon-chevron-left, .fc-icon-chevron-right{
+    color: var(--background-white-1);
+}
+
 section.calendar {
     width: 30%;
+    max-width: 600px;
     height: 100%;
     padding: 20px;
 }
@@ -113,6 +132,8 @@ section.calendar h2 {
     flex: 1;
     display: inline-block;
 }
+
+/* FIM CALENDARIO */
 
 .calendar_header-date {
     display: flex;
