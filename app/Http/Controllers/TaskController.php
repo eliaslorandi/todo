@@ -17,7 +17,7 @@ class TaskController extends Controller
         $categories = Category::all();
         $data['categories'] = $categories;
 
-        return view('tasks.create', $data);
+        return view('tasks.create_task', $data);
     }
 
     public function create_action(Request $request) {

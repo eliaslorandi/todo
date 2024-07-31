@@ -4,7 +4,7 @@
         <div class="task_title">{{ $data->title ?? '' }}</div>
     </div>
     <div class="priority">
-        <div class="sphere"></div>
+        
         <div>{{ $data->category->title ?? '' }}</div>
     </div>
     <div class="actions">

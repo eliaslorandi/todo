@@ -243,14 +243,6 @@ section.calendar h2 {
     width: 22px;
 }
 
-.sphere {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: rgb(128, 68, 0);
-}
-
 form {
     content: '';
     display: block;

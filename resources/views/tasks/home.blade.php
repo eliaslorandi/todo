@@ -2,7 +2,8 @@
 
     <x-slot:btn>
         <div class="nav-links">
-            <a href="{{ route('task.create') }}" class="btn btn-white1">Criar Tarefa</a>
+            <a href="{{ route('task.create_task') }}" class="btn btn-white1">Criar Tarefa</a>
+            <a href="{{ route('category.create_category') }}" class="btn btn-white1">Criar Categoria</a>
             <a href="{{ route('logout') }}" class="btn btn-white1">Sair</a>
         </div>
     </x-slot:btn>
