@@ -23,7 +23,7 @@
             </div>
             <div class="group">
                 <p><a href="{{ route('register') }}"> Crie uma conta </a></p>
-                <p><a href="{{ route('login') }}"> Esqueci minha senha </a></p>
+                {{-- <p><a href="{{ route('login') }}"> Esqueci minha senha </a></p> --}}
             </div>
         </form>
     </section>
