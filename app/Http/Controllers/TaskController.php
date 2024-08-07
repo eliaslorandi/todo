@@ -14,7 +14,8 @@ class TaskController extends Controller
     }
 
     public function create(Request $request){
-        $categories = Category::all();
+        $userId = Auth::id();
+        $categories = Category::where('user_id', $userId)->get();
         $data['categories'] = $categories;
 
         return view('tasks.create_task', $data);
@@ -24,7 +25,7 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'due_date' => 'required|date',
-            'category_id' => 'required|exists:categories,id', //exige que valor exista na tabela categories, coluna id
+            'category_id' => 'required|exists:categories,id' . Auth::id(), //exige que valor exista na tabela categories, coluna id
             'description' => 'required|string',
         ]);
       
