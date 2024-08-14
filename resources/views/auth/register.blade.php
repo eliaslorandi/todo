@@ -20,10 +20,10 @@
             <x-form.text_input name="password" label="Senha:" type="password" placeholder="Digite sua senha" />
             <x-form.text_input name="password_confirmation" label="Confirmar senha:" type="password" placeholder="Confirme sua senha" />
             <div class="large-btn">
-                <x-form.form_button submitTxt="Registrar-se"></x-form.form_button>
+                <x-form.button type="submit" class="btn"> Registrar </x-form.button>
             </div>
             <div class="group">
-                <p><a href="{{route('login')}}"> Já tenho conta </a></p>
+                <a href="{{route('login')}}"> Já tenho conta </a>
             </div>
         </form>
     </section>

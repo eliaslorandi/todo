@@ -10,7 +10,7 @@ use App\Http\Controllers\CategoryController;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/authenticated', [HomeController::class, 'authenticated'])->name('authenticated');
 
     Route::get('/task', [TaskController::class, 'index'])->name('create.view');
     Route::get('/task/new', [TaskController::class, 'create'])->name('task.create_task');
@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login_action'])->name('user.login_action');

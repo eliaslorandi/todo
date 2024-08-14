@@ -26,6 +26,6 @@ class CategoryController extends Controller
 
         Category::create($category);
 
-        return redirect(route('home'));
+        return redirect(route('authenticated'));
     }
 }

@@ -12,17 +12,16 @@
                 @endforeach
             </ul>
         @endif
-        
 
         <form method="POST" action="{{ route('user.login_action') }}">
             @csrf {{-- autenticação token pra enviar formulario --}}
             <x-form.text_input name="email" label="Email:" type="email" placeholder="Digite seu email" />
             <x-form.text_input name="password" label="Senha:" type="password" placeholder="Digite sua senha" />
             <div class="large-btn">
-                <x-button.form_button submitTxt="Entrar"></x-button.form_button>
+                <x-button.button type="submit" class="btn"> Entrar </x-button.button>
             </div>
             <div class="group">
-                <p><a href="{{ route('register') }}"> Crie uma conta </a></p>
+                <a href="{{ route('register') }}"> Crie uma conta </a>
                 {{-- <p><a href="{{ route('login') }}"> Esqueci minha senha </a></p> --}}
             </div>
         </form>

@@ -1,7 +1,7 @@
 <x-layout page="Create Task">
 
     <x-slot:btn>
-        <a href="{{ route('home') }}" class="btn btn-white1">
+        <a href="{{ route('authenticated') }}" class="btn-white1">
             Voltar
         </a>
     </x-slot:btn>
@@ -30,7 +30,7 @@
             </x-form.select_input>
             <x-form.text_area_input name="description" label="Descrição:" placeholder="Digite a descrição" />
             <div class="large-btn">
-                <x-button.form_button submitTxt="Criar tarefa"></x-button.form_button>
+                <x-button.button class="btn" type="submit"> Criar tarefa </x-button.button>
             </div>
         </form>
 

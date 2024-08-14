@@ -2,9 +2,9 @@
 
     <x-slot:btn>
         <div class="nav-links">
-            <a href="{{ route('task.create_task') }}" class="btn btn-white1">Criar Tarefa</a>
-            <a href="{{ route('category.create_category') }}" class="btn btn-white1">Criar Categoria</a>
-            <a href="{{ route('logout') }}" class="btn btn-white1">Sair</a>
+            <a href="{{ route('task.create_task') }}" class="btn-white1">Criar Tarefa</a>
+            <a href="{{ route('category.create_category') }}" class="btn-white1">Criar Categoria</a>
+            <a href="{{ route('logout') }}" class="btn-white1">Sair</a>
         </div>
     </x-slot:btn>
 
@@ -12,11 +12,11 @@
         <div class="calendar_header">
             <h2> Progresso </h2>
             <div class="calendar_header-date">
-                <a href="{{ route('home', ['date' => $datePrevButton]) }}">
+                <a href="{{ route('authenticated', ['date' => $datePrevButton]) }}">
                     <img src="/assets/images/prev-icon.png" alt="">
                 </a>
                 {{ $dateAsString }}
-                <a href="{{ route('home', ['date' => $dateNextButton]) }}">
+                <a href="{{ route('authenticated', ['date' => $dateNextButton]) }}">
                     <img src="/assets/images/next-icon.png" alt="">
                 </a>
             </div>
@@ -62,7 +62,7 @@
                 locale: 'pt-br',
                 dateClick: function(info) {
                     var selectedDate = info.dateStr; // Formato 'YYYY-MM-DD'
-                    window.location.href = '{{ route('home') }}?date=' + selectedDate;
+                    window.location.href = '{{ route('authenticated') }}?date=' + selectedDate;
                 },
                 events: [
                     @foreach ($tasks as $task)

@@ -45,7 +45,7 @@ class TaskController extends Controller
         //Cria tarefa no db
         Task::create($task);
 
-        return redirect(route('home'));
+        return redirect(route('authenticated'));
     }
 
     public function edit(Request $request)
@@ -54,7 +54,7 @@ class TaskController extends Controller
 
         $task = Task::find($id);
         if (!$task) {
-            return redirect(route('home'));
+            return redirect(route('authenticated'));
         }
         $categories = Category::all();
         $data['categories'] = $categories;
@@ -73,7 +73,7 @@ class TaskController extends Controller
         }
         $task->update($request_data);
         $task->save();
-        return redirect(route('home'));
+        return redirect(route('authenticated'));
     }
 
     public function update(Request $request)
@@ -96,6 +96,6 @@ class TaskController extends Controller
         if ($task) {
             $task->delete();
         }
-        return redirect(route('home'));
+        return redirect(route('authenticated'));
     }
 }

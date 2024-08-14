@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    public function authenticated(Request $request)
     {
 
         //dd($request->date);
@@ -41,5 +41,9 @@ class HomeController extends Controller
         $data['undone_tasks_count'] = $data['tasks_for_day']->where('is_done', false)->count();
 
         return view('tasks/home', $data);
+    }
+
+    public function welcome(){
+        return view('components/welcome');
     }
 }

@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function index(Request $request){
         if(Auth::check()){ //irá conferir se a seção é valida, mais rapido que o ::User
-            return redirect()->route('home');
+            return redirect()->route('authenticated');
         }
         return view('auth/login');
     }
@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)){
             //echo dd($credentials);
-            return redirect()->route('home');
+            return redirect()->route('authenticated');
         } else {
             return redirect()->back()->withErrors(['email' => 'Credencial inválida.',])->withInput();
         };
@@ -34,7 +34,7 @@ class AuthController extends Controller
     public function register(Request $request){
         $isLoggedIn = Auth::Check();
         if($isLoggedIn){
-            return redirect()->route('home');
+            return redirect()->route('authenticated');
         }
 
         return view('auth/register');
