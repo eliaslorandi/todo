@@ -1,2 +1,5 @@
-<button type="{{$type}}" class="btn">{{ $slot }}</button>
-{{-- class="btn {{$type == 'submit' ? 'btn-primary' : ''}}" --}}
+@if($type === 'link')
+    <a href="{{ $href }}" class="{{ $class }}">{{ $slot }}</a>
+@else
+    <button type="{{ $type }}" class="{{ $class }}">{{ $slot }}</button>
+@endif
