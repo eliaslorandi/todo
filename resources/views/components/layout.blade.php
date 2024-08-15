@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div class="content">
-            @if (Auth::check())
+            @if (Auth::check() && Route::currentRouteName() !== 'welcome')
                 <x-navbar>
                     <x-slot name="slot">
                         {{ $btn ?? '' }}
@@ -30,8 +30,6 @@
             </main>
         </div>
     </div>
-    
-    
 </body>
 
 </html>

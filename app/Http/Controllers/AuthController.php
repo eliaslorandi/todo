@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function index(Request $request){
+    public function login(Request $request){
         if(Auth::check()){ //irá conferir se a seção é valida, mais rapido que o ::User
             return redirect()->route('authenticated');
         }
@@ -36,7 +36,6 @@ class AuthController extends Controller
         if($isLoggedIn){
             return redirect()->route('authenticated');
         }
-
         return view('auth/register');
     }
 
@@ -70,8 +69,7 @@ class AuthController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect(route('login'));
+        return redirect(route('welcome'));
     }
-
 
 }
